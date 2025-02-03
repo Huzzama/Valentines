@@ -1,0 +1,127 @@
+<html>
+    <body>
+        <div id="contenido">
+            <br/>
+            <h1>¿Quieres ser mi San Valentín?</h1>
+            <img id="valentineImage" src="https://media.tenor.com/dQgEllasnCAAAAAM/kitties-anime-cuddle.gif" alt="Imagen de San Valentín" style="max-width: 300px; height: auto;">
+            <br/>
+            <button id="botonSi">Sí</button>
+            <button id="botonNo">No</button>
+        </div>
+
+        <style>
+            body {
+                background: linear-gradient(to bottom, #f5cac3, #f7ede2);
+                font-family: Arial, sans-serif;
+                text-align: center;
+            }
+            div {
+                text-align: center;
+                vertical-align: middle;
+            }
+            h1 {
+                color: #ff477e;
+            }
+            #botonSi {
+                background-color: #06d6a0;
+                transition: transform 0.3s;
+                margin-right: 10px;
+                width: 120px;
+                font-size: 30px;
+                height: 40px;
+                color: #fff;
+                margin-left: -140px;
+            }
+            #botonNo {
+                position: absolute;
+                background-color: #ef476f;
+                transition: transform 0.3s;
+                margin-left: 10px;
+                width: 120px;
+                height: 40px;
+                color: #fff;
+            }
+            #mensajeFinal {
+                font-size: 50px;
+                color: #ff477e;
+                margin-top: 20px;
+                display: none; /* Oculto inicialmente */
+            }
+        </style>
+        
+        <script>
+            var botonSi = document.getElementById("botonSi");
+            var botonNo = document.getElementById("botonNo");
+            var imagenValentin = document.getElementById("valentineImage");
+            var contenido = document.getElementById("contenido");
+            var mensajeFinal = document.createElement("div");
+            mensajeFinal.id = "mensajeFinal";
+            document.body.appendChild(mensajeFinal);
+
+            var textosNo = ["¿Estás segura?", "Por favor, dame una oportunidad", "No me hagas esto :(", "Me romperás el corazón", "Voy a llorar"];
+            var imagenesTristes = ["https://c.tenor.com/VW8CxXOx090AAAAd/tenor.gif", "https://media.tenor.com/2H05fScE1sYAAAAM/silly-cat-no-text.gif", "https://media.tenor.com/98mU4S0xUKkAAAAM/school-in-the-morning-be-like.gif", "https://media.tenor.com/98mU4S0xUKkAAAAM/school-in-the-morning-be-like.gif", "https://media.tenor.com/2m_3VHJrzekAAAAM/what-whatcat.gif", "https://media.tenor.com/Db9euJyQnbUAAAAj/chat-pouce.gif"];
+
+            botonSi.addEventListener("click", function () {
+                // Cambiar el contenido de la página
+                contenido.innerHTML = ` 
+                    <img src="https://media.tenor.com/ziky0pQTVYUAAAAM/little-cute.gif" alt="Celebración" style="max-width: 300px; height: auto;">
+                    <div id="mensajeFinal">YIIIIIIPPPPPE</div>
+                `;
+
+                // Mostrar el mensaje "¡Te amo! Nos vemos pronto <3" después de 3 segundos
+                setTimeout(function () {
+                    var mensajeAmor = document.createElement("div");
+                    mensajeAmor.style.fontSize = "30px";
+                    mensajeAmor.style.color = "#ff477e";
+                    mensajeAmor.style.marginTop = "20px";
+                    mensajeAmor.innerText = "¡Te amo! Nos vemos pronto <3";
+                    contenido.appendChild(mensajeAmor);
+
+                    // Mostrar los mensajes matemáticos debajo del mensaje de amor
+                    var mensaje1 = document.createElement("div");
+                    mensaje1.style.fontSize = "20px";
+                    mensaje1.style.marginTop = "10px";
+                    mensaje1.innerText = "f(x) = sqrt(1 - (abs(x) - 1)^2)";
+                    contenido.appendChild(mensaje1);
+
+                    var mensaje2 = document.createElement("div");
+                    mensaje2.style.fontSize = "20px";
+                    mensaje2.style.marginTop = "5px";
+                    mensaje2.innerText = "g(x) = cos^(-1)(1 - abs(x)) - π";
+                    contenido.appendChild(mensaje2);
+
+                    var mensaje2 = document.createElement("div");
+                    mensaje2.style.fontSize = "20px";
+                    mensaje2.style.marginTop = "5px";
+                    mensaje2.innerText = "Ponlo en geogrebra :D";
+                    contenido.appendChild(mensaje2);
+                }, 2000); // 2000 milisegundos = 2 segundos
+            });
+
+            botonNo.addEventListener("click", cambiar);
+
+            function cambiar() {
+                var indiceAleatorio = Math.floor(Math.random() * textosNo.length);
+                botonNo.innerText = textosNo[indiceAleatorio];
+
+                var i = Math.floor(Math.random() * 1000) + 1;
+                var j = Math.floor(Math.random() * 700) + 1;
+                botonNo.style.left = i + "px";
+                botonNo.style.top = j + "px";
+
+                var anchoActual = botonSi.offsetWidth;
+                var altoActual = botonSi.offsetHeight;
+                botonSi.style.width = anchoActual + 90 + "px";
+                botonSi.style.height = altoActual + 30 + "px";
+
+                var imagenAleatoria = Math.floor(Math.random() * imagenesTristes.length);
+                imagenValentin.src = imagenesTristes[imagenAleatoria];
+
+                // Verificar si el botón "No" está fuera de la pantalla o es demasiado pequeño
+                if (botonSi.offsetWidth > window.innerWidth * 0.9 || botonSi.offsetHeight > window.innerHeight * 0.9) {
+                    botonNo.style.display = "none"; // Ocultar el botón "No"
+                }
+            }
+        </script>
+    </body>
+</html>
